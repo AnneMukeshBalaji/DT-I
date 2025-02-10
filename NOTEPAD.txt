@@ -5,3 +5,69 @@ The system utilizes advanced object detection models, such as YOLO (You Only Loo
 The implementation of this system brings several benefits, including the elimination of checkout lines, reduced human error in scanning and payment validation, and increased operational efficiency. Moreover, it enhances the customer experience by making the entire process faster and more convenient, providing a touchless, cashier-less shopping experience. By integrating real-time video processing, object detection, and machine learning models, ScanPay represents a significant step toward a smarter, more efficient retail environment.
 
 This project showcases the potential of machine learning in revolutionizing retail checkout systems, offering a future-ready solution that can scale and adapt to various retail environments, providing both businesses and consumers with a more reliable and frictionless shopping experience
+
+
+
+
+
+
+
+
+
+FLOW CHART 
+
+
+
+graph TD;
+    
+    %% === CUSTOMER ARRIVES AT CHECKOUT ===
+    A[Start: Customer Arrives at Checkout] --> A1[Place Items on Checkout Counter];
+    A1 --> A2[Activate Camera & Barcode Scanner];
+
+    %% === INITIAL SCANNING PROCESS ===
+    A2 --> B[Scan Items One by One];
+    B --> B1[Real-Time Object Detection with YOLO];
+    B1 --> B2{Is Barcode Successfully Scanned?};
+
+    %% === HANDLING SCAN ERRORS ===
+    B2 -- Yes --> C[Item Added to Cart];
+    B2 -- No --> C1[Trigger Alert: Rescan Required];
+    C1 --> B;
+
+    %% === VERIFY IF ALL ITEMS ARE SCANNED ===
+    C --> C2{Are All Items Scanned?};
+    C2 -- No --> C1;  
+    C2 -- Yes --> D[Proceed to Payment Process];
+
+    %% === PAYMENT INITIATION ===
+    D --> D1[Display Total Amount on POS System];
+    D1 --> D2[Customer Chooses Payment Method];
+
+    %% === PAYMENT VERIFICATION PROCESS ===
+    D2 --> E[Monitor Payment Transaction];
+    E --> E1{Did POS System Confirm Payment?};
+    E1 -- Yes --> G[Successful Payment Recorded];
+
+    %% === HANDLING PAYMENT ERRORS ===
+    E1 -- No --> F[Check for Customer Gesture Confirmation];
+    F --> F1{Did the Customer Confirm Payment via Gesture?};
+    F1 -- Yes --> G;
+    F1 -- No --> H[Trigger Alert: Payment Not Completed];
+    H --> D2;
+
+    %% === POST-CHECKOUT ACTIONS ===
+    G --> I[Generate Digital Receipt];
+    I --> J[Display Confirmation Message on POS];
+    J --> K[Customer Collects Items];
+
+    %% === SECURITY & EXIT CHECK ===
+    K --> L[Trigger Security Check for Unpaid Items];
+    L --> L1{Are All Items Paid For?};
+    L1 -- Yes --> M[Allow Customer to Exit Store];
+    L1 -- No --> N[Trigger Alert: Unpaid Item Detected];
+    N --> O[Request Customer to Complete Payment];
+    O --> D2;
+
+    %% === END OF TRANSACTION ===
+    M --> P[End: Checkout Process Complete];
+
