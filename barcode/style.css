@@ -178,3 +178,28 @@ tbody tr:nth-of-type(odd) {
     justify-content: center;
     padding: 5px;
 }
+.pay-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+#payButton {
+    padding: 15px 30px;
+    background-color: black;
+    color: orange;
+    font-size: 24px;
+    font-weight: 900;
+    border-radius: 30px;
+    border: 3px solid orange;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#payButton:hover {
+    background-color: orange;
+    color: black;
+    border: 3px solid black;
+}
+

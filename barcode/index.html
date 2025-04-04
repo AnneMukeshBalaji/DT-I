@@ -31,6 +31,16 @@
         <label for="totalcost">Your Total Cost</label>
         <input type="text"id="totalcost" disabled>
     </div>
-
+    <div class="pay-button-container">
+        <button id="payButton">Proceed to Pay</button>
+    </div>
+    <script>
+        document.getElementById("payButton").addEventListener("click", function () {
+            const total = document.getElementById("totalcost").value;
+            // Save the total cost to localStorage so we can access it on the next page
+            localStorage.setItem("totalAmount", total);
+            window.location.href = "payment.html";
+        });
+    </script>        
 </body>
 </html>
